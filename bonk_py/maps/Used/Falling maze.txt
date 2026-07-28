@@ -1,0 +1,113 @@
+# players
+players["p_1"] = Player("P1", 40, 720 / 2, "red",
+	pygame.K_a, pygame.K_d, pygame.K_w, pygame.K_s, pygame.K_LCTRL)
+players["p_2"] = Player("P2", 80, 720 / 2, "blue",
+	pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_RETURN)
+
+global player_collision_status
+player_collision_status = False
+
+# start
+rects["starting_ground"] = Rect("black", pygame.math.Vector2(75, 300),
+	160, 10)
+
+rects["starting_wall"] = Rect("black", pygame.math.Vector2(5, 375),
+	10, 150)
+
+rects["starting_ceiling"] = Rect("black", pygame.math.Vector2(75, 450),
+	150, 10)
+
+rects["starting_debug"] = Rect("pink", pygame.math.Vector2(175, 375), 50, 5)
+
+
+#room 1
+rects["room_1_wall_l"] = Rect("black", pygame.math.Vector2(150, 200),
+	10, 200)
+
+rects["room_1_ground"] = Rect("black", pygame.math.Vector2(640, 100),
+	990, 10)
+
+rects["room_1_wall_r"] = Rect("black", pygame.math.Vector2(1130, 400),
+	10, 610)
+
+rects["room_1_obj_1"] = Rect("black", pygame.math.Vector2(200, 360),
+	10, 400)
+
+rects["room_1_obj_2"] = Rect("black", pygame.math.Vector2(640, 155),
+	600, 10,
+	facing = 10)
+
+rects["room_1_obj_3"] = Rect("black", pygame.math.Vector2(600, 250),
+	800, 10,
+	facing = 10)
+
+rects["room_1_obj_4"] = Rect("black", pygame.math.Vector2(1088, 450),
+	200, 10,
+	facing = -65)
+
+rects["room_1_death_1"] = Rect("grey", pygame.math.Vector2(640, 175),
+	20, 30,
+	facing = 10, death = True)
+
+rects["room_1_death_2"] = Rect("grey", pygame.math.Vector2(440, 210),
+	20, 30,
+	facing = 10, death = True)
+
+rects["room_1_death_3"] = Rect("grey", pygame.math.Vector2(550, 240),
+	20, 30,
+	facing = 10, death = True)
+
+rects["room_1_escape"] = Rect("yellow", pygame.math.Vector2(175, 500),
+	50, 10,
+	bouncy = 2.5)
+
+rects["room_1_final_boss"] = Rect("orange", pygame.math.Vector2(5, 625),
+	10, 350,
+	bouncy = 4)
+
+rects["room_1_ceiling"] = Rect("black", pygame.math.Vector2(640, 710),
+	990, 10)
+
+rects["room_2_moonjigi"] = Rect("yellow", pygame.math.Vector2(100, 800),
+	200, 10,
+	bouncy = 2.5)
+
+
+#room 2
+rects["room_2_spin1"] = Rect("purple", pygame.math.Vector2(900, 790),
+	5, 100,
+	rotation=(None, 0, -4), bouncy=1)
+
+rects["room_2_spin2"] = Rect("purple", pygame.math.Vector2(900, 790),
+	100, 5,
+	rotation=(None, 0, -4), bouncy=1)
+
+rects["room_2_wall_r"] = Rect("black", pygame.math.Vector2(1130, 1000),
+	10, 600)
+
+rects["room_2_lower_ceiling"] = Rect("black", pygame.math.Vector2((200+850)/2, (800+1000)/2),
+	math.sqrt(650**2 + 200**2), 10,
+	facing = -(pygame.math.Vector2(650, 200).angle))
+
+rects["line_test"] = Line("black", Vector2(950, 1000), Vector2(1130, 950))
+
+rects["line_test_2"] = Line("orange", Vector2(1130, 1250), Vector2(350, 1010))
+
+rects["one_hell_of_a_death_cross_1"] = Rect(pyg.Color((100, 0, 0)), Vector2(350, 1010),
+    280, 10,
+    rotation=(None, 0, -1), movement=(Vector2(350, 1010), Vector2(896, 1178), (78, 24)), death=True)
+
+rects["one_hell_of_a_death_cross_2"] = Rect(pyg.Color((100, 0, 0)), Vector2(350, 1010),
+    10, 280,
+    rotation=(None, 0, -1), movement=(Vector2(350, 1010), Vector2(896, 1178), Vector2(78, 24)), death=True)
+
+rects["hell_death_cube1"] = Line("grey", Vector2(800, 1070), Vector2(830, 1000),
+	death=True)
+
+rects["line_test_3"] = Line("yellow", Vector2(0, 800), Vector2(0, 1000),
+    bouncy=2)
+
+rects["line_test_4"] = Line("black", Vector2(0, 1000), Vector2(1000, 1300))
+
+global global_movement
+global_movement.y = -10

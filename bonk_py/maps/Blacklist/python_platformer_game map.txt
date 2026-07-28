@@ -1,0 +1,74 @@
+# players
+players["p_1"] = Player("P1", 1280 / 10 * 3, 720 - 550, "red",
+	pygame.K_a, pygame.K_d, pygame.K_w, pygame.K_s, pygame.K_LCTRL)
+players["p_2"] = Player("P2", 1280 / 10 * 7, 720 - 550, "blue",
+	pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_RETURN)
+
+# objects
+rects["ground"] = Rect("black", pygame.math.Vector2(1280 / 2, 50),
+	1280, 100)
+
+rects["wall_L"] = Rect("black", pygame.math.Vector2(10, 720 / 2 + 25),
+	20, 720 + 25)
+
+rects["wall_R"] = Rect("black", pygame.math.Vector2(1280 - 10, 720 / 2 + 25),
+	20, 720 + 25)
+
+rects["test_1"] = Rect("black", pygame.math.Vector2(1280 / 2 + 150, 200),
+	300, 10)
+
+rects["test_2"] = Rect("black", pygame.math.Vector2(1280 - 50, 720 - 55),
+	100, 10)
+
+rects["test_3"] = Rect("black", pygame.math.Vector2(1280 / 5 * 3 + 125, 720 + 95),
+	250, 10)
+
+rects["test_4"] = Rect("black", pygame.math.Vector2(1280 / 5 * 2 + 100, 720 + 345),
+	200, 10)
+
+rects["test_5"] = Rect("black", pygame.math.Vector2(1280 - 100, 720 + 205),
+	200, 10)
+
+rects["test_6"] = Rect("black", pygame.math.Vector2(1280 - 195, 720 + 240),
+	10, 75)
+
+rects["test_7"] = Rect("black", pygame.math.Vector2(1280 / 4 - 25, 720 + 700),
+	1280 / 2 - 50, 10)
+
+rects["test_8"] = Rect("black", pygame.math.Vector2(1280 / 4 * 3 + 25, 720 + 700),
+	1280 / 2 - 50, 10)
+
+rects["test_9"] = Rect("black", pygame.math.Vector2(5, 720 + 575),
+	10, 250)
+
+rects["moving_1"] = Rect("navy", pygame.math.Vector2(1280 / 2 + 100, 305),
+	200, 10,
+	movement = ((1280 / 10, 305), (1280 / 10 * 9, 305), (-150, 0)))
+
+rects["moving_2"] = Rect("navy", pygame.math.Vector2(1280 / 2 + 100, 720 + 600),
+	150, 10,
+	movement = ((1280 / 10, 720 + 600), (1280 / 2, 720 + 600), (-100, 0)))
+
+rects["moving_3"] = Rect("navy", pygame.math.Vector2(1280 / 10 + 50, 720 + 900),
+	100, 10,
+	movement = ((1280 / 10 + 50, 720 + 730), (1280 / 10 + 50, 720 + 1200), (0, -100)))
+
+rects["moving_4"] = Rect("navy", pygame.math.Vector2(1280 / 4 + 100, 720 + 1200),
+	200, 10,
+	movement = ((100, 720 + 1300), (1280 - 200, 720 + 1300), (-100, 0)))
+
+rects["slope_1"] = Rect("green", pygame.math.Vector2(1280 / 2, 500),
+	pygame.math.Vector2(640, 200).length(), 5,
+	facing = -pygame.math.Vector2(640, 200).angle)
+
+rects["slope_2"] = Rect("green", pygame.math.Vector2(1280 / 10, 720 + 300),
+	pygame.math.Vector2(1280 / 5, 300).length(), 5,
+	facing = pygame.math.Vector2(1280 / 5, 300).angle)
+
+rects["slope_3"] = Rect("green", pygame.math.Vector2(1280 / 20 * 17, 720 + 400),
+	pygame.math.Vector2(1280 / 10, 200).length(), 5,
+	facing = pygame.math.Vector2(1280 / 10, 200).angle)
+
+global global_movement
+global_movement.y = -10
+\
