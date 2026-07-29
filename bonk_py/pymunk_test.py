@@ -185,6 +185,7 @@ def game():
                     Player.cycle(screen, space, dt)
 
                     if global_movement:
+                        accelerate_movement = True
                         for rect in Rect.group:
                             rect.body.position += global_movement * dt
                             if rect.moving:
@@ -194,6 +195,20 @@ def game():
                                 rect.orb_center += global_movement * dt
                         for player in Player.group:
                             player.body.position += global_movement * dt
+                            if player.body.position.y < 400:
+                                accelerate_movement = False
+
+                        if accelerate_movement:
+                            for rect in Rect.group:
+                                rect.body.position += global_movement * dt
+                                if rect.moving:
+                                    rect.min_pos += global_movement * dt
+                                    rect.max_pos += global_movement * dt
+                                if rect.rotating:
+                                    rect.orb_center += global_movement * dt
+                            for player in Player.group:
+                                player.body.position += global_movement * dt
+
                     
                     space.step(dt)
                     win_lose()
