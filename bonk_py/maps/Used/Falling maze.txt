@@ -109,5 +109,17 @@ rects["line_test_3"] = Line("yellow", Vector2(0, 800), Vector2(0, 1000),
 
 rects["line_test_4"] = Line("black", Vector2(0, 1000), Vector2(1000, 1300))
 
+rects["line_test_5"] = Line("black", Vector2(1125, 1300), Vector2(1280, 1300))
+
+rects["line_test_last"] = Line("orange", Vector2(995, 1295), Vector2(1025, 1353),
+	bouncy=3.5)
+
+rects["3rd_floor"] = Line("black", Vector2(100, 1350), Vector2(1020, 1350))
+
+rects['2rd_floor_moonjigi'] = Rect("orange", Vector2(1400, 1355),
+	300, 100,
+	bouncy=2, movement=((1175, 1355), (1400, 1355), (150, 0)))
+
+
 global global_movement
 global_movement.y = -10
