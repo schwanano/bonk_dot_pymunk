@@ -1,0 +1,10 @@
+players["p_1"] = Player("P1", 1280 / 10 * 3, 720 - 550, "red",
+	pygame.K_a, pygame.K_d, pygame.K_w, pygame.K_s, pygame.K_LCTRL)
+players["p_2"] = Player("P2", 1280 / 10 * 7, 720 - 550, "blue",
+	pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_RETURN)
+
+# objects
+rects["ground"] = Rect("black", pygame.math.Vector2(1280 / 2, 50),
+	800, 100)
+
+goal = Goal((640, 200))

@@ -49,7 +49,11 @@ rects["moving_2"] = Rect("navy", pygame.math.Vector2(1280 / 2 + 100, 720 + 600),
 	150, 10,
 	movement = ((1280 / 10, 720 + 600), (1280 / 2, 720 + 600), (-100, 0)))
 
-rects["moving_3"] = Rect("navy", pygame.math.Vector2(1280 / 10 + 50, 720 + 900),
+rects["moving_3-1"] = Rect("navy", pygame.math.Vector2(1280 / 10 + 50, 720 + 900),
+	100, 10,
+	movement = ((1280 / 10 + 50, 720 + 730), (1280 / 10 + 50, 720 + 1200), (0, -100)))
+
+rects["moving_3-2"] = Rect("navy", pygame.math.Vector2(1280 / 10 + 250, 720 + 900),
 	100, 10,
 	movement = ((1280 / 10 + 50, 720 + 730), (1280 / 10 + 50, 720 + 1200), (0, -100)))
 

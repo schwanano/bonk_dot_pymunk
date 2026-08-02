@@ -40,6 +40,7 @@ def menu():
     scr_size = Vector2(screen.get_size())   #too lazy to type screen.get_width() and screen.get_height() every time
 
     while run:      #actual loop
+        keys = pyg.key.get_pressed()
         mouse_pos = pyg.mouse.get_pos()
         click = False   #getting mouse click
 
@@ -74,6 +75,9 @@ def menu():
             if click:
                 game()
                 break
+        elif keys[pyg.K_SPACE] or keys[pyg.K_RETURN]:
+            game()
+            break
 
         else:
             pyg.draw.rect(screen, (170, 170, 170), start_button_rect)
@@ -181,6 +185,7 @@ def game():
                 dt = clock.tick(60) / 1000
                 
                 if dt < 0.1:
+                    Goal.cycle(screen, space, dt)
                     Rect.cycle(screen, dt)
                     Player.cycle(screen, space, dt)
 
@@ -241,6 +246,8 @@ def pos_reset(space):
     rects = {}
     Player.group.clear()
     Rect.group.clear()
+    Goal.group.clear()
+    Goal.win = False
 
     #map loading
     if not glob.glob(f"{dir_path}/maps/*.txt"):
@@ -662,6 +669,67 @@ class Line:
             if self.moving:
                 self.movement(dt)
 
+
+class Goal:
+    group = []
+    win = False
+    def __init__(self, pos=Vector2(), radius=40, threshold=3):
+        self.position = pos
+        self.radius = radius
+        self.threshold = threshold
+        self.owner = None
+        self.state = 0  #captured:1, uncaptured:<1
+
+        Goal.group.append(self)
+
+    def on_capture(goal, inflictor, dt):
+        if goal.owner != None and goal.owner != inflictor:
+            goal.state -= dt / goal.threshold
+        else:
+            if goal.owner == inflictor:
+                goal.state += dt / goal.threshold
+            elif goal.owner == None:
+                goal.owner = inflictor
+                goal.state += dt / goal.threshold
+
+        if goal.state <= 0:
+            goal.owner = None
+            goal.state = 0
+        elif goal.state >=1:
+            Goal.win = goal.owner
+
+    def render(self, surf):
+        pyg.draw.circle(
+            surface=surf,
+            color='black',
+            center=pgut.to_pygame(self.position, surf),
+            radius=(self.radius + 1.49),
+            width=2
+        )
+        if self.owner != None:
+            pyg.draw.circle(
+                surface=surf,
+                color=self.owner.col,
+                center=pgut.to_pygame(self.position, surf),
+                radius=min(self.radius, self.state * self.radius)
+            )
+
+    def capture(self, dt):
+        for inflictor in Player.group:
+            if Vector2(inflictor.body.position - self.position).length() < self.radius:
+                Goal.on_capture(self, inflictor, dt)
+
+    def game(space):
+        if Goal.win:
+            for player in Player.group:
+                if player != Goal.win:
+                    player.are_you_alive(space, death=True)
+
+    def cycle(surf, space, dt):
+        Goal.game(space)
+        for goal in Goal.group:
+            goal.render(surf)
+            goal.capture(dt)            
 
 
 while menu() != 'quit':
