@@ -716,7 +716,7 @@ class Goal:
 
     def capture(self, dt):
         for inflictor in Player.group:
-            if Vector2(inflictor.body.position - self.position).length() < self.radius:
+            if Vector2(inflictor.body.position - self.position).length() < self.radius + inflictor.shape.radius:
                 Goal.on_capture(self, inflictor, dt)
 
     def game(space):
